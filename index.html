@@ -23,7 +23,6 @@
         <h2>
             待機中（<span id="waitingCount">0</span>組）
         </h2>
-
         <div id="waitingList"></div>
     </section>
 
@@ -32,7 +31,6 @@
         <h2>
             試着中（<span id="fittingCount">0</span>組）
         </h2>
-
         <div id="fittingList"></div>
     </section>
 
@@ -45,10 +43,7 @@
 
 </div>
 
-<script src="script.js"></script>
-
-</body>
-</html>
+<!-- ▼▼ ここに Firebase を入れる ▼▼ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -66,9 +61,14 @@
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 
-  // script.js から使えるようにグローバルに渡す
   window.db = db;
   window.ref = ref;
   window.set = set;
   window.onValue = onValue;
 </script>
+
+<!-- ▼▼ Firebase の後に script.js を読み込む ▼▼ -->
+<script src="script.js"></script>
+
+</body>
+</html>
