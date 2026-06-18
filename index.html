@@ -49,3 +49,26 @@
 
 </body>
 </html>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2Z0E5hcMpCdYEw0idjJnEjrUXQr7qsP4",
+    authDomain: "fitting-room-4ee96.firebaseapp.com",
+    databaseURL: "https://fitting-room-4ee96-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "fitting-room-4ee96",
+    storageBucket: "fitting-room-4ee96.firebasestorage.app",
+    messagingSenderId: "957114953314",
+    appId: "1:957114953314:web:3bda5d9d66a5085e872b3b"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // script.js から使えるようにグローバルに渡す
+  window.db = db;
+  window.ref = ref;
+  window.set = set;
+  window.onValue = onValue;
+</script>
