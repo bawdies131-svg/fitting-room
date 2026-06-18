@@ -1,0 +1,44 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試着室管理</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>試着室管理</h1>
+
+    <!-- 受付 -->
+    <section class="section">
+        <h2>受付</h2>
+        <div id="reception" class="reception-grid"></div>
+    </section>
+
+    <!-- 待機中 -->
+    <section class="section">
+        <h2>
+            待機中（<span id="waitingCount">0</span>組）
+        </h2>
+
+        <div id="waitingList"></div>
+    </section>
+
+       <!-- 全リセット -->
+    <section class="section">
+        <button id="resetButton" class="reset-button">
+            ⚠ 全リセット
+        </button>
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```
