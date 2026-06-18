@@ -3,12 +3,18 @@ const params = new URLSearchParams(window.location.search);
 const storeId = params.get("store") || "default";
 console.log("店舗ID:", storeId);
 
-// ② 店舗ごとの waiting を読み込む
-let waiting = JSON.parse(localStorage.getItem(`waiting_${storeId}`)) || [];
+// ② Firebase からリアルタイムで waiting を読み込む
+let waiting = [];
 
-// ③ 店舗ごとに waiting を保存
+onValue(ref(db, `stores/${storeId}`), (snapshot) => {
+    const data = snapshot.val();
+    waiting = data || [];
+    render();
+});
+
+// ③ Firebase に waiting を保存
 function save() {
-    localStorage.setItem(`waiting_${storeId}`, JSON.stringify(waiting));
+    set(ref(db, `stores/${storeId}`), waiting);
 }
 
 function render() {
@@ -49,7 +55,6 @@ function addWaiting(number) {
     if (confirm(number + "番で受付しますか？")) {
         waiting.push(number);
         save();
-        render();
     }
 }
 
@@ -59,7 +64,6 @@ function returnNumber(number) {
             return n !== number;
         });
         save();
-        render();
     }
 }
 
@@ -67,9 +71,8 @@ document.getElementById("resetButton").addEventListener("click", function() {
     if (confirm("全てのデータを削除しますか？")) {
         waiting = [];
         save();
-        render();
     }
 });
 
+// 初期表示
 render();
-
